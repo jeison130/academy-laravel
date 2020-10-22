@@ -1,15 +1,17 @@
 require('./bootstrap');
 
 import Vue from 'vue';
+import axios from 'axios';
 
-import { InertiaApp } from '@inertiajs/inertia-vue';
-import { InertiaForm } from 'laravel-jetstream';
+import {InertiaApp} from '@inertiajs/inertia-vue';
+import {InertiaForm} from 'laravel-jetstream';
 import PortalVue from 'portal-vue';
 
-Vue.mixin({ methods: { route } });
+Vue.mixin({methods: {route}});
 Vue.use(InertiaApp);
 Vue.use(InertiaForm);
 Vue.use(PortalVue);
+Vue.use(axios)
 
 const app = document.getElementById('app');
 

@@ -1925,6 +1925,107 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Components/Loading.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Components/Loading.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "Loading",
+  props: {
+    color: {
+      "default": 'indigo-500'
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Components/Pagination.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Components/Pagination.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'Pagination',
+  props: {
+    data: Object
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Jetstream/ActionMessage.vue?vue&type=script&lang=js&":
 /*!***********************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Jetstream/ActionMessage.vue?vue&type=script&lang=js& ***!
@@ -4171,8 +4272,10 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Jetstream_Label__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Jetstream/Label */ "./resources/js/Jetstream/Label.vue");
 /* harmony import */ var _Jetstream_Input__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Jetstream/Input */ "./resources/js/Jetstream/Input.vue");
-/* harmony import */ var _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Layouts/AppLayout */ "./resources/js/Layouts/AppLayout.vue");
-/* harmony import */ var _Jetstream_FormSection__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Jetstream/FormSection */ "./resources/js/Jetstream/FormSection.vue");
+/* harmony import */ var _Jetstream_InputError__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Jetstream/InputError */ "./resources/js/Jetstream/InputError.vue");
+/* harmony import */ var _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Layouts/AppLayout */ "./resources/js/Layouts/AppLayout.vue");
+/* harmony import */ var _Jetstream_FormSection__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Jetstream/FormSection */ "./resources/js/Jetstream/FormSection.vue");
+/* harmony import */ var _Components_Loading__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/Components/Loading */ "./resources/js/Components/Loading.vue");
 //
 //
 //
@@ -4236,6 +4339,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+
+
 
 
 
@@ -4243,27 +4356,32 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "create",
   components: {
-    AppLayout: _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_2__["default"],
+    AppLayout: _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_3__["default"],
     JetLabel: _Jetstream_Label__WEBPACK_IMPORTED_MODULE_0__["default"],
     JetInput: _Jetstream_Input__WEBPACK_IMPORTED_MODULE_1__["default"],
-    JetFormSection: _Jetstream_FormSection__WEBPACK_IMPORTED_MODULE_3__["default"]
+    JetFormSection: _Jetstream_FormSection__WEBPACK_IMPORTED_MODULE_4__["default"],
+    JetInputError: _Jetstream_InputError__WEBPACK_IMPORTED_MODULE_2__["default"],
+    Loading: _Components_Loading__WEBPACK_IMPORTED_MODULE_5__["default"]
   },
   data: function data() {
     return {
-      student: {
+      form: this.$inertia.form({
+        '_method': 'POST',
         name: '',
         lastName: '',
         age: '',
         email: ''
-      }
+      }),
+      loading: false
     };
   },
   methods: {
     saveStudent: function saveStudent() {
       var _this = this;
 
-      axios.post('/api/students', this.student).then(function (response) {
-        _this.route('students');
+      this.loading = true;
+      this.form.post(route('students.store')).then(function () {
+        _this.loading = false;
       });
     }
   }
@@ -4281,6 +4399,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Layouts/AppLayout */ "./resources/js/Layouts/AppLayout.vue");
+/* harmony import */ var _Components_Pagination__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Components/Pagination */ "./resources/js/Components/Pagination.vue");
 //
 //
 //
@@ -4366,24 +4485,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "list.vue",
   components: {
-    AppLayout: _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__["default"]
+    AppLayout: _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__["default"],
+    Pagination: _Components_Pagination__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
-  data: function data() {
-    return {
-      students: []
-    };
-  },
-  mounted: function mounted() {
-    var _this = this;
-
-    axios.get('/api/students').then(function (response) {
-      _this.students = response.data.data;
-    });
-  }
+  props: ['students']
 });
 
 /***/ }),
@@ -23174,6 +23294,262 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Components/Loading.vue?vue&type=template&id=0e188e7e&scoped=true&":
+/*!**********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Components/Loading.vue?vue&type=template&id=0e188e7e&scoped=true& ***!
+  \**********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "svg",
+    {
+      class: "animate-spin -ml-1 mr-3 h-5 w-5 text-" + _vm.color,
+      attrs: {
+        xmlns: "http://www.w3.org/2000/svg",
+        fill: "none",
+        viewBox: "0 0 24 24"
+      }
+    },
+    [
+      _c("circle", {
+        staticClass: "opacity-25",
+        attrs: {
+          cx: "12",
+          cy: "12",
+          r: "10",
+          stroke: "currentColor",
+          "stroke-width": "4"
+        }
+      }),
+      _vm._v(" "),
+      _c("path", {
+        staticClass: "opacity-75",
+        attrs: {
+          fill: "currentColor",
+          d:
+            "M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+        }
+      })
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Components/Pagination.vue?vue&type=template&id=0e1fe725&":
+/*!*************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Components/Pagination.vue?vue&type=template&id=0e1fe725& ***!
+  \*************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    {
+      staticClass:
+        "bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6"
+    },
+    [
+      _vm._m(0),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass:
+            "hidden sm:flex-1 sm:flex sm:items-center sm:justify-between"
+        },
+        [
+          _c("div", [
+            _c("p", { staticClass: "text-sm leading-5 text-gray-700" }, [
+              _vm._v("\n                Mostrando\n                "),
+              _c("span", { staticClass: "font-medium" }, [_vm._v("1")]),
+              _vm._v("\n                a\n                "),
+              _c("span", { staticClass: "font-medium" }, [
+                _vm._v(
+                  "\n                    " +
+                    _vm._s(
+                      _vm.data.total < _vm.data.per_page
+                        ? _vm.data.total
+                        : _vm.data.per_page
+                    ) +
+                    "\n                "
+                )
+              ]),
+              _vm._v("\n                de\n                "),
+              _c("span", { staticClass: "font-medium" }, [
+                _vm._v(_vm._s(_vm.data.total))
+              ]),
+              _vm._v("\n                resultados\n            ")
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", [
+            _c(
+              "nav",
+              { staticClass: "relative z-0 inline-flex shadow-sm" },
+              [
+                _c(
+                  "a",
+                  {
+                    class:
+                      " " +
+                      (!_vm.data.links[0].url ? "opacity-25" : "") +
+                      " relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm leading-5 font-medium text-gray-500 hover:text-gray-400 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-500 transition ease-in-out duration-150",
+                    attrs: {
+                      href: _vm.data.links[0].url,
+                      "aria-label": "Previous"
+                    }
+                  },
+                  [
+                    _c(
+                      "svg",
+                      {
+                        staticClass: "h-5 w-5",
+                        attrs: {
+                          xmlns: "http://www.w3.org/2000/svg",
+                          viewBox: "0 0 20 20",
+                          fill: "currentColor"
+                        }
+                      },
+                      [
+                        _c("path", {
+                          attrs: {
+                            "fill-rule": "evenodd",
+                            d:
+                              "M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z",
+                            "clip-rule": "evenodd"
+                          }
+                        })
+                      ]
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _vm._l(_vm.data.links, function(link, i) {
+                  return i > 0 && i < _vm.data.links.length - 1
+                    ? _c(
+                        "a",
+                        {
+                          class:
+                            (_vm.data.current_page == link.label
+                              ? "border-blue-400"
+                              : "") +
+                            " hidden md:inline-flex -ml-px relative items-center px-4 py-2 border border-gray-300 bg-white text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150",
+                          attrs: { href: link.url }
+                        },
+                        [
+                          _vm._v(
+                            "\n                    " +
+                              _vm._s(link.label) +
+                              "\n                "
+                          )
+                        ]
+                      )
+                    : _vm._e()
+                }),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    class:
+                      " " +
+                      (!_vm.data.links[_vm.data.links.length - 1].url
+                        ? "opacity-25"
+                        : "") +
+                      " -ml-px relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm leading-5 font-medium text-gray-500 hover:text-gray-400 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-500 transition ease-in-out duration-150",
+                    attrs: {
+                      href: _vm.data.links[_vm.data.links.length - 1].url,
+                      "aria-label": "Next"
+                    }
+                  },
+                  [
+                    _c(
+                      "svg",
+                      {
+                        staticClass: "h-5 w-5",
+                        attrs: {
+                          xmlns: "http://www.w3.org/2000/svg",
+                          viewBox: "0 0 20 20",
+                          fill: "currentColor"
+                        }
+                      },
+                      [
+                        _c("path", {
+                          attrs: {
+                            "fill-rule": "evenodd",
+                            d:
+                              "M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z",
+                            "clip-rule": "evenodd"
+                          }
+                        })
+                      ]
+                    )
+                  ]
+                )
+              ],
+              2
+            )
+          ])
+        ]
+      )
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "flex-1 flex justify-between sm:hidden" }, [
+      _c(
+        "a",
+        {
+          staticClass:
+            "relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm leading-5 font-medium rounded-md text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150",
+          attrs: { href: "#" }
+        },
+        [_vm._v("\n            Previous\n        ")]
+      ),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          staticClass:
+            "ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm leading-5 font-medium rounded-md text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150",
+          attrs: { href: "#" }
+        },
+        [_vm._v("\n            Next\n        ")]
+      )
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Jetstream/ActionMessage.vue?vue&type=template&id=bcb26626&":
 /*!***************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Jetstream/ActionMessage.vue?vue&type=template&id=bcb26626& ***!
@@ -24793,8 +25169,8 @@ var render = function() {
                     "jet-nav-link",
                     {
                       attrs: {
-                        href: _vm.route("students"),
-                        active: _vm.$page.currentRouteName == "students"
+                        href: _vm.route("students.index"),
+                        active: _vm.$page.currentRouteName == "students.index"
                       }
                     },
                     [
@@ -27176,13 +27552,28 @@ var render = function() {
                     {
                       staticClass:
                         "bg-indigo-500 py-2 px-5 text-white float-right rounded-r-lg outline-none focus:outline-none",
+                      attrs: { disabled: _vm.loading },
                       on: {
                         click: function($event) {
                           return _vm.saveStudent()
                         }
                       }
                     },
-                    [_vm._v("\n                    Guardar\n                ")]
+                    [
+                      _c(
+                        "div",
+                        { staticClass: "flex" },
+                        [
+                          _vm.loading
+                            ? _c("loading", { attrs: { color: "white" } })
+                            : _vm._e(),
+                          _vm._v(
+                            "\n                        Guardar\n                    "
+                          )
+                        ],
+                        1
+                      )
+                    ]
                   ),
                   _vm._v(" "),
                   _c(
@@ -27190,7 +27581,7 @@ var render = function() {
                     {
                       staticClass:
                         "bg-gray-500 py-2 px-5 text-white float-right rounded-l-lg outline-none focus:outline-none",
-                      attrs: { href: _vm.route("students") }
+                      attrs: { href: _vm.route("students.index") }
                     },
                     [_vm._v("\n                    Volver\n                ")]
                   )
@@ -27239,12 +27630,17 @@ var render = function() {
                             staticClass: "mt-1 block w-full",
                             attrs: { id: "name", autocomplete: "name" },
                             model: {
-                              value: _vm.student.name,
+                              value: _vm.form.name,
                               callback: function($$v) {
-                                _vm.$set(_vm.student, "name", $$v)
+                                _vm.$set(_vm.form, "name", $$v)
                               },
-                              expression: "student.name"
+                              expression: "form.name"
                             }
+                          }),
+                          _vm._v(" "),
+                          _c("jet-input-error", {
+                            staticClass: "mt-2",
+                            attrs: { message: _vm.form.error("name") }
                           })
                         ],
                         1
@@ -27262,12 +27658,17 @@ var render = function() {
                             staticClass: "mt-1 block w-full",
                             attrs: { id: "lastName" },
                             model: {
-                              value: _vm.student.lastName,
+                              value: _vm.form.lastName,
                               callback: function($$v) {
-                                _vm.$set(_vm.student, "lastName", $$v)
+                                _vm.$set(_vm.form, "lastName", $$v)
                               },
-                              expression: "student.lastName"
+                              expression: "form.lastName"
                             }
+                          }),
+                          _vm._v(" "),
+                          _c("jet-input-error", {
+                            staticClass: "mt-2",
+                            attrs: { message: _vm.form.error("lastName") }
                           })
                         ],
                         1
@@ -27285,12 +27686,17 @@ var render = function() {
                             staticClass: "mt-1 block w-full",
                             attrs: { id: "age" },
                             model: {
-                              value: _vm.student.age,
+                              value: _vm.form.age,
                               callback: function($$v) {
-                                _vm.$set(_vm.student, "age", $$v)
+                                _vm.$set(_vm.form, "age", $$v)
                               },
-                              expression: "student.age"
+                              expression: "form.age"
                             }
+                          }),
+                          _vm._v(" "),
+                          _c("jet-input-error", {
+                            staticClass: "mt-2",
+                            attrs: { message: _vm.form.error("age") }
                           })
                         ],
                         1
@@ -27308,12 +27714,17 @@ var render = function() {
                             staticClass: "mt-1 block w-full",
                             attrs: { id: "email", autocomplete: "email" },
                             model: {
-                              value: _vm.student.email,
+                              value: _vm.form.email,
                               callback: function($$v) {
-                                _vm.$set(_vm.student, "email", $$v)
+                                _vm.$set(_vm.form, "email", $$v)
                               },
-                              expression: "student.email"
+                              expression: "form.email"
                             }
+                          }),
+                          _vm._v(" "),
+                          _c("jet-input-error", {
+                            staticClass: "mt-2",
+                            attrs: { message: _vm.form.error("email") }
                           })
                         ],
                         1
@@ -27495,139 +27906,169 @@ var render = function() {
                                     staticClass:
                                       "bg-white divide-y divide-gray-200"
                                   },
-                                  _vm._l(_vm.students, function(student) {
-                                    return _c("tr", [
-                                      _c(
-                                        "td",
-                                        {
-                                          staticClass:
-                                            "px-6 py-4 whitespace-no-wrap"
-                                        },
-                                        [
+                                  [
+                                    !_vm.students.data.length
+                                      ? _c("tr", [
                                           _c(
-                                            "div",
-                                            {
-                                              staticClass:
-                                                "text-sm leading-5 font-medium text-gray-900"
-                                            },
+                                            "td",
+                                            { attrs: { colspan: "5" } },
                                             [
-                                              _vm._v(
-                                                "\n                                                " +
-                                                  _vm._s(student.name) +
-                                                  "\n                                            "
+                                              _c(
+                                                "div",
+                                                {
+                                                  staticClass:
+                                                    "text-center py-5 text-gray-500"
+                                                },
+                                                [
+                                                  _vm._v(
+                                                    "\n                                            No se han encontrado resultados para tu busqueda\n                                            "
+                                                  )
+                                                ]
                                               )
                                             ]
                                           )
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "td",
-                                        {
-                                          staticClass:
-                                            "px-6 py-4 whitespace-no-wrap"
-                                        },
-                                        [
-                                          _c(
-                                            "div",
-                                            {
-                                              staticClass:
-                                                "text-sm leading-5 font-medium text-gray-900"
-                                            },
-                                            [
-                                              _vm._v(
-                                                "\n                                                " +
-                                                  _vm._s(student.lastName) +
-                                                  "\n                                            "
-                                              )
-                                            ]
-                                          )
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "td",
-                                        {
-                                          staticClass:
-                                            "px-6 py-4 whitespace-no-wrap"
-                                        },
-                                        [
-                                          _c(
-                                            "div",
-                                            {
-                                              staticClass:
-                                                "text-sm leading-5 font-medium text-gray-900"
-                                            },
-                                            [
-                                              _vm._v(
-                                                "\n                                                " +
-                                                  _vm._s(student.age) +
-                                                  "\n                                            "
-                                              )
-                                            ]
-                                          )
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "td",
-                                        {
-                                          staticClass:
-                                            "px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500"
-                                        },
-                                        [
-                                          _c(
-                                            "div",
-                                            {
-                                              staticClass:
-                                                "text-sm leading-5 font-medium text-gray-900"
-                                            },
-                                            [
-                                              _vm._v(
-                                                "\n                                                " +
-                                                  _vm._s(student.email) +
-                                                  "\n                                            "
-                                              )
-                                            ]
-                                          )
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "td",
-                                        {
-                                          staticClass:
-                                            "px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium"
-                                        },
-                                        [
-                                          _c(
-                                            "a",
-                                            {
-                                              staticClass:
-                                                "text-indigo-600 hover:text-indigo-900",
-                                              attrs: { href: "#" }
-                                            },
-                                            [_vm._v("Editar")]
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "a",
-                                            {
-                                              staticClass:
-                                                "text-red-600 hover:text-red-900 ml-1",
-                                              attrs: { href: "#" }
-                                            },
-                                            [_vm._v("Eliminar")]
-                                          )
-                                        ]
-                                      )
-                                    ])
-                                  }),
-                                  0
+                                        ])
+                                      : _vm._l(_vm.students.data, function(
+                                          student
+                                        ) {
+                                          return _c("tr", [
+                                            _c(
+                                              "td",
+                                              {
+                                                staticClass:
+                                                  "px-6 py-4 whitespace-no-wrap"
+                                              },
+                                              [
+                                                _c(
+                                                  "div",
+                                                  {
+                                                    staticClass:
+                                                      "text-sm leading-5 font-medium text-gray-900"
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      "\n                                                " +
+                                                        _vm._s(student.name) +
+                                                        "\n                                            "
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "td",
+                                              {
+                                                staticClass:
+                                                  "px-6 py-4 whitespace-no-wrap"
+                                              },
+                                              [
+                                                _c(
+                                                  "div",
+                                                  {
+                                                    staticClass:
+                                                      "text-sm leading-5 font-medium text-gray-900"
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      "\n                                                " +
+                                                        _vm._s(
+                                                          student.lastName
+                                                        ) +
+                                                        "\n                                            "
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "td",
+                                              {
+                                                staticClass:
+                                                  "px-6 py-4 whitespace-no-wrap"
+                                              },
+                                              [
+                                                _c(
+                                                  "div",
+                                                  {
+                                                    staticClass:
+                                                      "text-sm leading-5 font-medium text-gray-900"
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      "\n                                                " +
+                                                        _vm._s(student.age) +
+                                                        "\n                                            "
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "td",
+                                              {
+                                                staticClass:
+                                                  "px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500"
+                                              },
+                                              [
+                                                _c(
+                                                  "div",
+                                                  {
+                                                    staticClass:
+                                                      "text-sm leading-5 font-medium text-gray-900"
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      "\n                                                " +
+                                                        _vm._s(student.email) +
+                                                        "\n                                            "
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "td",
+                                              {
+                                                staticClass:
+                                                  "px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium"
+                                              },
+                                              [
+                                                _c(
+                                                  "a",
+                                                  {
+                                                    staticClass:
+                                                      "text-indigo-600 hover:text-indigo-900",
+                                                    attrs: { href: "#" }
+                                                  },
+                                                  [_vm._v("Editar")]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "a",
+                                                  {
+                                                    staticClass:
+                                                      "text-red-600 hover:text-red-900 ml-1",
+                                                    attrs: { href: "#" }
+                                                  },
+                                                  [_vm._v("Eliminar")]
+                                                )
+                                              ]
+                                            )
+                                          ])
+                                        })
+                                  ],
+                                  2
                                 )
                               ]
-                            )
-                          ]
+                            ),
+                            _vm._v(" "),
+                            _c("pagination", { attrs: { data: _vm.students } })
+                          ],
+                          1
                         )
                       ]
                     )
@@ -39818,6 +40259,144 @@ module.exports = function(module) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ "./resources/js/Components/Loading.vue":
+/*!*********************************************!*\
+  !*** ./resources/js/Components/Loading.vue ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Loading_vue_vue_type_template_id_0e188e7e_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Loading.vue?vue&type=template&id=0e188e7e&scoped=true& */ "./resources/js/Components/Loading.vue?vue&type=template&id=0e188e7e&scoped=true&");
+/* harmony import */ var _Loading_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Loading.vue?vue&type=script&lang=js& */ "./resources/js/Components/Loading.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Loading_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Loading_vue_vue_type_template_id_0e188e7e_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Loading_vue_vue_type_template_id_0e188e7e_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "0e188e7e",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/Components/Loading.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/Components/Loading.vue?vue&type=script&lang=js&":
+/*!**********************************************************************!*\
+  !*** ./resources/js/Components/Loading.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Loading_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./Loading.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Components/Loading.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Loading_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/Components/Loading.vue?vue&type=template&id=0e188e7e&scoped=true&":
+/*!****************************************************************************************!*\
+  !*** ./resources/js/Components/Loading.vue?vue&type=template&id=0e188e7e&scoped=true& ***!
+  \****************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Loading_vue_vue_type_template_id_0e188e7e_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./Loading.vue?vue&type=template&id=0e188e7e&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Components/Loading.vue?vue&type=template&id=0e188e7e&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Loading_vue_vue_type_template_id_0e188e7e_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Loading_vue_vue_type_template_id_0e188e7e_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/Components/Pagination.vue":
+/*!************************************************!*\
+  !*** ./resources/js/Components/Pagination.vue ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Pagination_vue_vue_type_template_id_0e1fe725___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Pagination.vue?vue&type=template&id=0e1fe725& */ "./resources/js/Components/Pagination.vue?vue&type=template&id=0e1fe725&");
+/* harmony import */ var _Pagination_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Pagination.vue?vue&type=script&lang=js& */ "./resources/js/Components/Pagination.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Pagination_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Pagination_vue_vue_type_template_id_0e1fe725___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Pagination_vue_vue_type_template_id_0e1fe725___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/Components/Pagination.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/Components/Pagination.vue?vue&type=script&lang=js&":
+/*!*************************************************************************!*\
+  !*** ./resources/js/Components/Pagination.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Pagination_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./Pagination.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Components/Pagination.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Pagination_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/Components/Pagination.vue?vue&type=template&id=0e1fe725&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/Components/Pagination.vue?vue&type=template&id=0e1fe725& ***!
+  \*******************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Pagination_vue_vue_type_template_id_0e1fe725___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./Pagination.vue?vue&type=template&id=0e1fe725& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Components/Pagination.vue?vue&type=template&id=0e1fe725&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Pagination_vue_vue_type_template_id_0e1fe725___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Pagination_vue_vue_type_template_id_0e1fe725___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
 
 /***/ }),
 

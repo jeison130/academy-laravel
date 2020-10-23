@@ -14,7 +14,7 @@
 
                         <!-- Navigation Links -->
                         <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                            <jet-nav-link :href="route('students')" :active="$page.currentRouteName == 'students'">
+                            <jet-nav-link :href="route('students.index')" :active="$page.currentRouteName == 'students.index'">
                                 Estudiantes
                             </jet-nav-link>
                         </div>

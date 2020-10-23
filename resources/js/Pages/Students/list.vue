@@ -11,7 +11,7 @@
                     <a
                         class="bg-indigo-500 py-2 px-5 text-white float-right rounded-lg outline-none focus:outline-none"
                         :href="route('students.create')"
-                        >
+                    >
                         Crear
                     </a>
                 </div>
@@ -45,7 +45,14 @@
                                         </tr>
                                         </thead>
                                         <tbody class="bg-white divide-y divide-gray-200">
-                                        <tr v-for="student in students">
+                                        <tr v-if="!students.data.length">
+                                            <td colspan="5">
+                                                <div class="text-center py-5 text-gray-500">
+                                                No se han encontrado resultados para tu busqueda
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr v-for="student in students.data" v-else>
                                             <td class="px-6 py-4 whitespace-no-wrap">
                                                 <div class="text-sm leading-5 font-medium text-gray-900">
                                                     {{ student.name }}
@@ -73,6 +80,9 @@
                                         </tr>
                                         </tbody>
                                     </table>
+
+                                    <pagination :data="students" />
+
                                 </div>
                             </div>
                         </div>
@@ -85,20 +95,12 @@
 
 <script>
     import AppLayout from '@/Layouts/AppLayout'
+    import Pagination from "@/Components/Pagination";
 
     export default {
         name: "list.vue",
-        components: {AppLayout},
-        data() {
-            return {
-                students: []
-            }
-        },
-        mounted() {
-            axios.get('/api/students').then((response) => {
-                this.students = response.data.data
-            })
-        }
+        components: {AppLayout, Pagination},
+        props: ['students']
     }
 </script>
 

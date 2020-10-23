@@ -4,17 +4,33 @@ namespace App\Http\Controllers;
 
 use App\Models\Student;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class StudentController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return Student::paginate(10);
+        $students = Student::paginate(10);
+
+        return Inertia::render('Students/list', [
+            'students' => $students
+        ]);
+    }
+
+    /**
+     * Form for create new students
+     *
+     * @return \Inertia\Response
+     */
+    public function create()
+    {
+        return Inertia::render('Students/create');
     }
 
     /**
@@ -34,7 +50,7 @@ class StudentController extends Controller
 
         $student = Student::create($validateData);
 
-        return $student;
+        return redirect('students');
     }
 
     /**

@@ -7,11 +7,24 @@
     </div>-->
     <div class="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
         <div class="flex-1 flex justify-between sm:hidden">
-            <a href="#" class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm leading-5 font-medium rounded-md text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150">
-                Previous
+            <a :href="data.links[0].url" :class="`${!data.links[0].url ? 'opacity-25' : ''} relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm leading-5 font-medium rounded-md text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150`">
+                Anterior
             </a>
-            <a href="#" class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm leading-5 font-medium rounded-md text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150">
-                Next
+            <div>
+                <p class="text-sm leading-5 text-gray-700">
+                    Mostrando
+                    <span class="font-medium">1</span>
+                    -
+                    <span class="font-medium">
+                        {{ data.total < data.per_page ? data.total : data.per_page }}
+                    </span>
+                    de
+                    <span class="font-medium">{{ data.total }}</span>
+                    resultados
+                </p>
+            </div>
+            <a :href="data.links[data.links.length -1].url" :class="`${!data.links[data.links.length -1].url ? 'opacity-25' : ''} ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm leading-5 font-medium rounded-md text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150`">
+                Siguiente
             </a>
         </div>
         <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">

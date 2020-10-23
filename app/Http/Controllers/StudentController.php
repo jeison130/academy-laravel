@@ -48,7 +48,7 @@ class StudentController extends Controller
             'email' => 'required|email'
         ]);
 
-        $student = Student::create($validateData);
+        Student::create($validateData);
 
         return redirect('students');
     }
@@ -64,6 +64,13 @@ class StudentController extends Controller
         return $student;
     }
 
+    public function edit(Student $student)
+    {
+        return Inertia::render('Students/edit', [
+            'student' => $student
+        ]);
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -73,7 +80,16 @@ class StudentController extends Controller
      */
     public function update(Request $request, Student $student)
     {
-        //
+        $validateData = $request->validate([
+            'name' => 'required|max:50',
+            'lastName' => 'required|max:50',
+            'age' => 'required',
+            'email' => 'required|email'
+        ]);
+
+        $student->update($validateData);
+
+        return redirect('students');
     }
 
     /**
@@ -84,6 +100,8 @@ class StudentController extends Controller
      */
     public function destroy(Student $student)
     {
+        $student->delete();
 
+        return redirect('students');
     }
 }

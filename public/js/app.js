@@ -27142,7 +27142,7 @@ var render = function() {
                   staticClass:
                     "font-semibold text-xl text-gray-800 leading-tight"
                 },
-                [_vm._v("\n            Profile\n        ")]
+                [_vm._v("\n            Perfil\n        ")]
               )
             ]
           },
@@ -27163,32 +27163,7 @@ var render = function() {
             _vm._v(" "),
             _c("jet-section-border"),
             _vm._v(" "),
-            _c("update-password-form", { staticClass: "mt-10 sm:mt-0" }),
-            _vm._v(" "),
-            _vm.$page.jetstream.canManageTwoFactorAuthentication
-              ? _c(
-                  "div",
-                  [
-                    _c("jet-section-border"),
-                    _vm._v(" "),
-                    _c("two-factor-authentication-form", {
-                      staticClass: "mt-10 sm:mt-0"
-                    })
-                  ],
-                  1
-                )
-              : _vm._e(),
-            _vm._v(" "),
-            _c("jet-section-border"),
-            _vm._v(" "),
-            _c("logout-other-browser-sessions-form", {
-              staticClass: "mt-10 sm:mt-0",
-              attrs: { sessions: _vm.sessions }
-            }),
-            _vm._v(" "),
-            _c("jet-section-border"),
-            _vm._v(" "),
-            _c("delete-user-form", { staticClass: "mt-10 sm:mt-0" })
+            _c("update-password-form", { staticClass: "mt-10 sm:mt-0" })
           ],
           1
         )
@@ -27455,7 +27430,7 @@ var render = function() {
       {
         key: "title",
         fn: function() {
-          return [_vm._v("\n        Update Password\n    ")]
+          return [_vm._v("\n        Actualizar la contraseña\n    ")]
         },
         proxy: true
       },
@@ -27464,7 +27439,7 @@ var render = function() {
         fn: function() {
           return [
             _vm._v(
-              "\n        Ensure your account is using a long, random password to stay secure.\n    "
+              "\n        Asegúrese de que su cuenta esté usando una contraseña larga y aleatoria para mantenerse seguro.\n    "
             )
           ]
         },
@@ -27479,7 +27454,7 @@ var render = function() {
               { staticClass: "col-span-6 sm:col-span-4" },
               [
                 _c("jet-label", {
-                  attrs: { for: "current_password", value: "Current Password" }
+                  attrs: { for: "current_password", value: "Contraseña actual" }
                 }),
                 _vm._v(" "),
                 _c("jet-input", {
@@ -27512,7 +27487,7 @@ var render = function() {
               { staticClass: "col-span-6 sm:col-span-4" },
               [
                 _c("jet-label", {
-                  attrs: { for: "password", value: "New Password" }
+                  attrs: { for: "password", value: "Nueva contraseña" }
                 }),
                 _vm._v(" "),
                 _c("jet-input", {
@@ -27546,7 +27521,7 @@ var render = function() {
                 _c("jet-label", {
                   attrs: {
                     for: "password_confirmation",
-                    value: "Confirm Password"
+                    value: "Confirmar contraseña"
                   }
                 }),
                 _vm._v(" "),
@@ -27587,7 +27562,11 @@ var render = function() {
                 staticClass: "mr-3",
                 attrs: { on: _vm.form.recentlySuccessful }
               },
-              [_vm._v("\n            Saved.\n        ")]
+              [
+                _vm._v(
+                  "\n            Información almacenada correctamente.\n        "
+                )
+              ]
             ),
             _vm._v(" "),
             _c(
@@ -27596,7 +27575,7 @@ var render = function() {
                 class: { "opacity-25": _vm.form.processing },
                 attrs: { disabled: _vm.form.processing }
               },
-              [_vm._v("\n            Save\n        ")]
+              [_vm._v("\n            Guardar\n        ")]
             )
           ]
         },
@@ -27633,7 +27612,7 @@ var render = function() {
       {
         key: "title",
         fn: function() {
-          return [_vm._v("\n        Profile Information\n    ")]
+          return [_vm._v("\n        Información de perfil\n    ")]
         },
         proxy: true
       },
@@ -27642,7 +27621,7 @@ var render = function() {
         fn: function() {
           return [
             _vm._v(
-              "\n        Update your account's profile information and email address.\n    "
+              "\n        Actualice la información de perfil y la dirección de correo electrónico de su cuenta.\n    "
             )
           ]
         },
@@ -27769,7 +27748,7 @@ var render = function() {
               "div",
               { staticClass: "col-span-6 sm:col-span-4" },
               [
-                _c("jet-label", { attrs: { for: "name", value: "Name" } }),
+                _c("jet-label", { attrs: { for: "name", value: "Nombre" } }),
                 _vm._v(" "),
                 _c("jet-input", {
                   staticClass: "mt-1 block w-full",
@@ -27830,7 +27809,11 @@ var render = function() {
                 staticClass: "mr-3",
                 attrs: { on: _vm.form.recentlySuccessful }
               },
-              [_vm._v("\n            Saved.\n        ")]
+              [
+                _vm._v(
+                  "\n            Información almacenada correctamente.\n        "
+                )
+              ]
             ),
             _vm._v(" "),
             _c(
@@ -27839,7 +27822,7 @@ var render = function() {
                 class: { "opacity-25": _vm.form.processing },
                 attrs: { disabled: _vm.form.processing }
               },
-              [_vm._v("\n            Save\n        ")]
+              [_vm._v("\n            Guardar\n        ")]
             )
           ]
         },

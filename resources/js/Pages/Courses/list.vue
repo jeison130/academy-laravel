@@ -4,13 +4,13 @@
             <div class="flex ">
                 <div class="flex-auto">
                     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                        Estudiantes
+                        Cursos
                     </h2>
                 </div>
                 <div class="flex-auto">
                     <a
                         class="bg-indigo-500 py-2 px-5 text-white float-right rounded-lg outline-none focus:outline-none"
-                        :href="route('students.create')"
+                        :href="route('courses.create')"
                     >
                         Crear
                     </a>
@@ -20,51 +20,51 @@
         </template>
 
         <div class="py-12">
-            <datatable :data="students">
+            <datatable :data="courses">
                 <template #head>
                     <tr>
                         <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                            Nombres
+                            Nombre
                         </th>
                         <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                            Apellidos
+                            Horario
                         </th>
                         <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                            Edad
+                            Fecha inicio
                         </th>
                         <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                            Email
+                            Fecha finalización
                         </th>
                         <th class="px-6 py-3 bg-gray-50"></th>
                     </tr>
                 </template>
 
                 <template #body>
-                    <tr v-for="student in students.data">
+                    <tr v-for="course in courses.data">
                         <td class="px-6 py-4 whitespace-no-wrap">
                             <div class="text-sm leading-5 font-medium text-gray-900">
-                                {{ student.name }}
+                                {{ course.name }}
                             </div>
                         </td>
                         <td class="px-6 py-4 whitespace-no-wrap">
                             <div class="text-sm leading-5 font-medium text-gray-900">
-                                {{ student.lastName }}
+                                {{ course.schedule }}
                             </div>
                         </td>
                         <td class="px-6 py-4 whitespace-no-wrap">
                             <div class="text-sm leading-5 font-medium text-gray-900">
-                                {{ student.age }}
+                                {{ course.start_date }}
                             </div>
                         </td>
                         <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500">
                             <div class="text-sm leading-5 font-medium text-gray-900">
-                                {{ student.email }}
+                                {{ course.end_date }}
                             </div>
                         </td>
                         <td class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
-                            <a :href="route('students.edit', student.id)"
+                            <a :href="route('courses.edit', course.id)"
                                class="text-indigo-600 hover:text-indigo-900">Editar</a>
-                            <a @click="showDeleteStudentModal(student)"
+                            <a @click="showDeleteCourseModal(course)"
                                class="cursor-pointer text-red-600 hover:text-red-900 ml-1">Eliminar</a>
                         </td>
                     </tr>
@@ -73,21 +73,21 @@
         </div>
 
         <!--Modal confirmation delete student-->
-        <jet-confirmation-modal v-if="studentDelete" :show="deleteStudentModal" @close="deleteStudentModal = false">
+        <jet-confirmation-modal v-if="courseDelete" :show="deleteCourseModal" @close="deleteCourseModal = false">
             <template #title>
-                Eliminar estudiante
+                Eliminar curso
             </template>
 
             <template #content>
-                ¿Está seguro que desea eliminar al estudiante {{ studentDelete.name }} {{ studentDelete.lastName }}?
+                ¿Está seguro que desea eliminar el curso {{ courseDelete.name }}?
             </template>
 
             <template #footer>
-                <jet-secondary-button @click.native="deleteStudentModal = false">
+                <jet-secondary-button @click.native="deleteCourseModal = false">
                     Cancelar
                 </jet-secondary-button>
 
-                <jet-danger-button class="ml-2" @click.native="deleteStudent"
+                <jet-danger-button class="ml-2" @click.native="deleteCourse"
                                    :class="{ 'opacity-25': formDelete.processing }"
                                    :disabled="formDelete.processing">
 
@@ -110,13 +110,13 @@
     import Datatable from "@/Components/Datatable";
 
     export default {
-        name: "StudentsList",
+        name: "CoursesList",
         components: {AppLayout, JetConfirmationModal, JetSecondaryButton, JetDangerButton, Loading, Datatable},
-        props: ['students'],
+        props: ['courses'],
         data() {
             return {
-                deleteStudentModal: false,
-                studentDelete: null,
+                deleteCourseModal: false,
+                courseDelete: null,
                 formDelete: this.$inertia.form({
                     '_method': 'DELETE'
                 })
@@ -124,13 +124,13 @@
 
         },
         methods: {
-            showDeleteStudentModal(student) {
-                this.deleteStudentModal = true
-                this.studentDelete = student
+            showDeleteCourseModal(course) {
+                this.deleteCourseModal = true
+                this.courseDelete = course
 
             },
-            deleteStudent() {
-                this.formDelete.delete(route('students.destroy', this.studentDelete.id))
+            deleteCourse() {
+                this.formDelete.delete(route('courses.destroy', this.courseDelete.id))
             }
         }
     }

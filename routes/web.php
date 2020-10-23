@@ -21,4 +21,6 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return Inertia\Inertia::render('Dashboard');
 })->name('dashboard');
 
+Route::resource('courses', \App\Http\Controllers\CourseController::class);
 Route::resource('students', \App\Http\Controllers\StudentController::class);
+

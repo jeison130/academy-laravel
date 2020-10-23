@@ -31,7 +31,7 @@
             <div>
                 <p class="text-sm leading-5 text-gray-700">
                     Mostrando
-                    <span class="font-medium">1</span>
+                    <span class="font-medium">{{ data.total > 0 ? 1 : 0 }}</span>
                     a
                     <span class="font-medium">
                         {{ data.total < data.per_page ? data.total : data.per_page }}

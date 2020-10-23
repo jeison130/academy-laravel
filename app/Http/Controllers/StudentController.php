@@ -14,7 +14,7 @@ class StudentController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
         $students = Student::paginate(10);
 

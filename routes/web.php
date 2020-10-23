@@ -24,3 +24,4 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::resource('courses', \App\Http\Controllers\CourseController::class);
 Route::resource('students', \App\Http\Controllers\StudentController::class);
 
+Route::patch('students/{id}/assign', [ \App\Http\Controllers\StudentController::class, 'assignCourse' ])->name('students.assign');

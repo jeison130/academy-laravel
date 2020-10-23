@@ -14,10 +14,10 @@
 
                         <!-- Navigation Links -->
                         <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                            <jet-nav-link :href="route('courses.index')" :active="$page.currentRouteName == 'courses.index'">
+                            <jet-nav-link :href="route('courses.index')" :active="$page.currentRouteName.includes('courses')">
                                 Cursos
                             </jet-nav-link>
-                            <jet-nav-link :href="route('students.index')" :active="$page.currentRouteName == 'students.index'">
+                            <jet-nav-link :href="route('students.index')" :active="$page.currentRouteName.includes('students')">
                                 Estudiantes
                             </jet-nav-link>
                         </div>

@@ -1,6 +1,6 @@
 <template>
 
-    <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 w-full">
         <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
             <div class="flex flex-col">
                 <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -11,10 +11,18 @@
                                 <slot name="head"></slot>
                                 </thead>
                                 <tbody class="bg-white divide-y divide-gray-200">
-                                <tr v-if="!data.data.length">
+                                <tr v-if="loading">
+                                    <td colspan="5">
+                                        <div class="flex py-5 text-gray-500 justify-center">
+                                            <loading />
+                                        </div>
+
+                                    </td>
+                                </tr>
+                                <tr v-else-if="!data.data.length">
                                     <td colspan="5">
                                         <div class="text-center py-5 text-gray-500">
-                                            No se han encontrado resultados para tu busqueda
+                                            No se han encontrado resultados para tu búsqueda
                                         </div>
                                     </td>
                                 </tr>
@@ -24,7 +32,7 @@
                                 </tbody>
                             </table>
 
-                            <pagination :data="data"/>
+                            <pagination v-if="pagination" :data="data"/>
 
                         </div>
                     </div>
@@ -37,11 +45,22 @@
 
 <script>
     import Pagination from "@/Components/Pagination";
+    import Loading from "@/Components/Loading";
 
     export default {
         name: "Datatable",
-        props: ['data'],
-        components: { Pagination }
+        props: {
+            data: {
+                default: null
+            },
+            pagination: {
+                default: true
+            },
+            loading: {
+                default: false
+            }
+        },
+        components: { Pagination, Loading }
     }
 </script>
 

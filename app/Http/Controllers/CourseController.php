@@ -11,10 +11,20 @@ class CourseController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Course[]|\Illuminate\Database\Eloquent\Collection|\Inertia\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        if($request->ajax()){
+            $courses = Course::select('courses.*')
+                    ->leftJoin('students_courses', 'students_courses.course_id', \DB::raw('courses.id AND students_courses.student_id = ' . $request->query('student_id')))
+                    ->whereNull('students_courses.student_id')
+                    ->get();
+
+            return $courses;
+        }
+
         $courses = Course::paginate(10);
 
         return Inertia::render('Courses/list', [

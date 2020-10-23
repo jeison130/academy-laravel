@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Student;
+use App\Models\StudentCourse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -103,5 +104,22 @@ class StudentController extends Controller
         $student->delete();
 
         return redirect('students');
+    }
+
+    public function assignCourse(Request $request, $student_id){
+
+        /*\DB::table('students_courses')->insert([
+           'student_id' => $student_id,
+           'course_id' => $request->input('course_id')
+        ]);*/
+        StudentCourse::create([
+            'student_id' => $student_id,
+            'course_id' => $request->input('course_id')
+        ]);
+        /*$student->courses()->create([
+            'course_id' => $request->input('course_id')
+        ]);*/
+
+        return ['message' => 'El curso ha sido asignado correctamente'];
     }
 }

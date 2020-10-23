@@ -62,10 +62,23 @@
                             </div>
                         </td>
                         <td class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
-                            <a :href="route('students.edit', student.id)"
-                               class="text-indigo-600 hover:text-indigo-900">Editar</a>
-                            <a @click="showDeleteStudentModal(student)"
-                               class="cursor-pointer text-red-600 hover:text-red-900 ml-1">Eliminar</a>
+                            <div class="flex items-center justify-around">
+                                <a :href="route('students.edit', student.id)"
+                                   class="text-indigo-600 hover:text-indigo-900">Editar</a>
+                                <a @click="showDeleteStudentModal(student)"
+                                   class="cursor-pointer text-red-600 hover:text-red-900">Eliminar</a>
+
+                                <button type="button"
+                                        class="bg-green-400 hover:bg-green-500 py-2 px-5 text-white float-right rounded-lg outline-none focus:outline-none"
+                                        @click="showToAssignCourse(student)">
+                                    Asignar Curso
+                                </button>
+
+                                <button type="button"
+                                        class="bg-blue-400 hover:bg-blue-500 py-2 px-5 text-white float-right rounded-lg outline-none focus:outline-none">
+                                    Ver Cursos
+                                </button>
+                            </div>
                         </td>
                     </tr>
                 </template>
@@ -73,13 +86,13 @@
         </div>
 
         <!--Modal confirmation delete student-->
-        <jet-confirmation-modal v-if="studentDelete" :show="deleteStudentModal" @close="deleteStudentModal = false">
+        <jet-confirmation-modal v-if="currentStudent" :show="deleteStudentModal" @close="deleteStudentModal = false">
             <template #title>
                 Eliminar estudiante
             </template>
 
             <template #content>
-                ¿Está seguro que desea eliminar al estudiante {{ studentDelete.name }} {{ studentDelete.lastName }}?
+                ¿Está seguro que desea eliminar al estudiante {{ currentStudent.name }} {{ currentStudent.lastName }}?
             </template>
 
             <template #footer>
@@ -98,6 +111,9 @@
                 </jet-danger-button>
             </template>
         </jet-confirmation-modal>
+
+        <!--Modal Courses-->
+        <modal-courses ref="toAssignCourse" :show="toAssignCourseModal" :student="currentStudent" @close="toAssignCourseModal = false"></modal-courses>
     </app-layout>
 </template>
 
@@ -108,15 +124,18 @@
     import JetDangerButton from "@/Jetstream/DangerButton";
     import Loading from "@/Components/Loading";
     import Datatable from "@/Components/Datatable";
+    import JButton from "@/Jetstream/Button";
+    import ModalCourses from "@/Components/ModalCourses";
 
     export default {
         name: "StudentsList",
-        components: {AppLayout, JetConfirmationModal, JetSecondaryButton, JetDangerButton, Loading, Datatable},
+        components: {AppLayout, JetConfirmationModal, JetSecondaryButton, JetDangerButton, Loading, Datatable, JButton, ModalCourses},
         props: ['students'],
         data() {
             return {
                 deleteStudentModal: false,
-                studentDelete: null,
+                toAssignCourseModal: false,
+                currentStudent: null,
                 formDelete: this.$inertia.form({
                     '_method': 'DELETE'
                 })
@@ -126,12 +145,17 @@
         methods: {
             showDeleteStudentModal(student) {
                 this.deleteStudentModal = true
-                this.studentDelete = student
+                this.currentStudent = student
 
             },
             deleteStudent() {
-                this.formDelete.delete(route('students.destroy', this.studentDelete.id))
-            }
+                this.formDelete.delete(route('students.destroy', this.currentStudent.id))
+            },
+            showToAssignCourse(student){
+                this.toAssignCourseModal = true
+                this.currentStudent = student
+                this.$refs.toAssignCourse.fetchData()
+            },
         }
     }
 </script>

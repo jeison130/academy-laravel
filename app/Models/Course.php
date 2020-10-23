@@ -11,4 +11,8 @@ class Course extends Model
 
     protected $fillable = ['name', 'schedule', 'start_date', 'end_date'];
 
+    public function students()
+    {
+        return $this->belongsToMany('App\Models\Student', 'students_courses');
+    }
 }

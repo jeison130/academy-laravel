@@ -75,7 +75,8 @@
                                 </button>
 
                                 <button type="button"
-                                        class="bg-blue-400 hover:bg-blue-500 py-2 px-5 text-white float-right rounded-lg outline-none focus:outline-none">
+                                        class="bg-blue-400 hover:bg-blue-500 py-2 px-5 text-white float-right rounded-lg outline-none focus:outline-none"
+                                        @click="showCoursesStudent(student)">
                                     Ver Cursos
                                 </button>
                             </div>
@@ -113,7 +114,12 @@
         </jet-confirmation-modal>
 
         <!--Modal Courses-->
-        <modal-courses ref="toAssignCourse" :show="toAssignCourseModal" :student="currentStudent" @close="toAssignCourseModal = false"></modal-courses>
+        <modal-courses ref="toAssignCourse" :show="toAssignCourseModal" :student="currentStudent"
+                       @close="toAssignCourseModal = false"></modal-courses>
+
+        <!-- Modal Corses Students -->
+        <modal-courses-student ref="coursesStudent" :show="coursesStudentModal" :student="currentStudent"
+                               @close="coursesStudentModal = false"></modal-courses-student>
     </app-layout>
 </template>
 
@@ -126,10 +132,21 @@
     import Datatable from "@/Components/Datatable";
     import JButton from "@/Jetstream/Button";
     import ModalCourses from "@/Components/ModalCourses";
+    import ModalCoursesStudent from "@/Components/ModalCoursesStudent";
 
     export default {
         name: "StudentsList",
-        components: {AppLayout, JetConfirmationModal, JetSecondaryButton, JetDangerButton, Loading, Datatable, JButton, ModalCourses},
+        components: {
+            AppLayout,
+            JetConfirmationModal,
+            JetSecondaryButton,
+            JetDangerButton,
+            Loading,
+            Datatable,
+            JButton,
+            ModalCourses,
+            ModalCoursesStudent
+        },
         props: ['students'],
         data() {
             return {
@@ -138,7 +155,8 @@
                 currentStudent: null,
                 formDelete: this.$inertia.form({
                     '_method': 'DELETE'
-                })
+                }),
+                coursesStudentModal: false
             }
 
         },
@@ -151,11 +169,16 @@
             deleteStudent() {
                 this.formDelete.delete(route('students.destroy', this.currentStudent.id))
             },
-            showToAssignCourse(student){
+            showToAssignCourse(student) {
                 this.toAssignCourseModal = true
                 this.currentStudent = student
                 this.$refs.toAssignCourse.fetchData()
             },
+            showCoursesStudent(student) {
+                this.coursesStudentModal = true
+                this.currentStudent = student
+                this.$refs.coursesStudent.fetchData()
+            }
         }
     }
 </script>

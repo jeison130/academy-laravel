@@ -127,6 +127,12 @@
 
         <!-- Page Content -->
         <main>
+            <div class="max-w-7xl mx-auto px-3 sm:px-7 mt-8" v-if="$page.flash.success || $page.flash.error">
+                <alert v-if="$page.flash.success" :text="$page.flash.success"></alert>
+                <alert v-else-if="$page.flash.error" color="red" :text="$page.flash.error"></alert>
+            </div>
+
+
             <slot></slot>
         </main>
 
@@ -143,6 +149,7 @@
     import JetDropdownLink from '@/Jetstream/DropdownLink'
     import JetNavLink from '@/Jetstream/NavLink'
     import JetResponsiveNavLink from '@/Jetstream/ResponsiveNavLink'
+    import Alert from "@/Components/Alert";
 
     export default {
         components: {
@@ -152,6 +159,7 @@
             JetDropdownLink,
             JetNavLink,
             JetResponsiveNavLink,
+            Alert
         },
 
         data() {

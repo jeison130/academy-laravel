@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
 use App\Models\Student;
 use App\Models\StudentCourse;
 use Illuminate\Http\Request;
@@ -51,7 +52,7 @@ class StudentController extends Controller
 
         Student::create($validateData);
 
-        return redirect('students');
+        return redirect('students')->with('success', 'Estudiante creado correctamente.');
     }
 
     /**
@@ -90,7 +91,7 @@ class StudentController extends Controller
 
         $student->update($validateData);
 
-        return redirect('students');
+        return redirect('students')->with('success', 'Estudiante actualizado correctamente.');
     }
 
     /**
@@ -101,9 +102,14 @@ class StudentController extends Controller
      */
     public function destroy(Student $student)
     {
-        $student->delete();
+        try{
+            $student->delete();
 
-        return redirect('students');
+            return redirect('students')->with('success', 'Estudiante eliminado correctamente.');
+        }catch (\Exception $e){
+            return redirect('students')->with('error', 'No ha sido posible eliminar el estudiante debido a que tiene algunos cursos enlazados');
+        }
+
     }
 
     public function assignCourse(Request $request, $student_id){
@@ -121,5 +127,25 @@ class StudentController extends Controller
         ]);*/
 
         return ['message' => 'El curso ha sido asignado correctamente'];
+    }
+
+    public function courses(Request $request, $student_id){
+        $courses = Course::select('courses.*')
+            ->join('students_courses', 'students_courses.course_id', 'courses.id')
+            ->where('students_courses.student_id', $student_id)
+            ->get();
+
+        return $courses;
+    }
+
+    public function coursesDelete(Request $request, $student_id, $course_id){
+        /*$courses = Course::select('courses.*')
+            ->join('students_courses', 'students_courses.course_id', 'courses.id')
+            ->where('students_courses.student_id', $student_id)
+            ->get();*/
+        StudentCourse::where('student_id', $student_id)
+        ->where('course_id', $course_id)->delete();
+
+        return ['message' => 'El curso ha sido eliminado correctamente'];
     }
 }

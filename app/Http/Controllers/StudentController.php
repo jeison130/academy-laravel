@@ -129,6 +129,15 @@ class StudentController extends Controller
         return ['message' => 'El curso ha sido asignado correctamente'];
     }
 
+    public function courseAvaible(Request $request, $student_id){
+        $courses = Course::select('courses.*')
+            ->leftJoin('students_courses', 'students_courses.course_id', \DB::raw('courses.id AND students_courses.student_id = ' . $student_id))
+            ->whereNull('students_courses.student_id')
+            ->get();
+
+        return $courses;
+    }
+
     public function courses(Request $request, $student_id){
         $courses = Course::select('courses.*')
             ->join('students_courses', 'students_courses.course_id', 'courses.id')

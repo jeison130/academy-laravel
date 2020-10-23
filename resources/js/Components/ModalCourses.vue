@@ -90,10 +90,12 @@
                 this.$emit('close')
             },
             fetchData() {
-                this.text = null
+                setTimeout(() =>{
+                    this.text = null
+                }, 5000)
                 this.loading = true
                 this.$nextTick(() => {
-                    axios.get(route('courses.index'), {
+                    axios.get(route('students.courses.avaible', this.student.id), {
                         params: {
                             student_id: this.student.id
                         }

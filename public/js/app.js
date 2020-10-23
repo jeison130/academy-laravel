@@ -2181,10 +2181,12 @@ __webpack_require__.r(__webpack_exports__);
     fetchData: function fetchData() {
       var _this = this;
 
-      this.text = null;
+      setTimeout(function () {
+        _this.text = null;
+      }, 5000);
       this.loading = true;
       this.$nextTick(function () {
-        axios.get(route('courses.index'), {
+        axios.get(route('students.courses.avaible', _this.student.id), {
           params: {
             student_id: _this.student.id
           }

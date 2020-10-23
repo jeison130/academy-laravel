@@ -24,6 +24,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::resource('courses', \App\Http\Controllers\CourseController::class);
 Route::resource('students', \App\Http\Controllers\StudentController::class);
 
+Route::get('students/{id}/courses-avaible', [ \App\Http\Controllers\StudentController::class, 'courseAvaible' ])->name('students.courses.avaible');
 Route::patch('students/{id}/assign', [ \App\Http\Controllers\StudentController::class, 'assignCourse' ])->name('students.assign');
 Route::get('students/{id}/courses', [ \App\Http\Controllers\StudentController::class, 'courses' ])->name('students.courses');
 Route::delete('students/{id}/courses/{course_id}', [ \App\Http\Controllers\StudentController::class, 'coursesDelete' ])->name('students.courses.delete');
+

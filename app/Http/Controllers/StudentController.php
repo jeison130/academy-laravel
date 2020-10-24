@@ -148,10 +148,6 @@ class StudentController extends Controller
     }
 
     public function coursesDelete(Request $request, $student_id, $course_id){
-        /*$courses = Course::select('courses.*')
-            ->join('students_courses', 'students_courses.course_id', 'courses.id')
-            ->where('students_courses.student_id', $student_id)
-            ->get();*/
         StudentCourse::where('student_id', $student_id)
         ->where('course_id', $course_id)->delete();
 

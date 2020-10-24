@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\Student;
+use App\Models\StudentCourse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -36,7 +38,7 @@ class CourseController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -50,13 +52,13 @@ class CourseController extends Controller
 
         Course::create($validateData);
 
-        return redirect('courses');
+        return redirect('courses')->with('success', 'Curso creado correctamente.');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Course  $course
+     * @param \App\Models\Course $course
      * @return \Illuminate\Http\Response
      */
     public function show(Course $course)
@@ -67,7 +69,7 @@ class CourseController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Course  $course
+     * @param \App\Models\Course $course
      * @return \Illuminate\Http\Response
      */
     public function edit(Course $course)
@@ -80,8 +82,8 @@ class CourseController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Course  $course
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Course $course
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Course $course)
@@ -95,19 +97,36 @@ class CourseController extends Controller
 
         $course->update($validateData);
 
-        return redirect('courses');
+        return redirect('courses')->with('success', 'Curso actualizado correctamente.');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Course  $course
+     * @param \App\Models\Course $course
      * @return \Illuminate\Http\Response
      */
     public function destroy(Course $course)
     {
         $course->delete();
 
-        return redirect('courses');
+        return redirect('courses')->with('success', 'Curso eliminado correctamente.');
+    }
+
+    public function students($course_id)
+    {
+        $students = Student::select('students.*')
+            ->join('students_courses', 'students_courses.student_id', 'students.id')
+            ->where('students_courses.course_id', $course_id)
+            ->get();
+
+        return $students;
+    }
+
+    public function studentDelete($course_id, $student_id){
+        StudentCourse::where('student_id', $student_id)
+            ->where('course_id', $course_id)->delete();
+
+        return ['message' => 'El estudiante ha sido eliminado correctamente'];
     }
 }

@@ -62,10 +62,20 @@
                             </div>
                         </td>
                         <td class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
-                            <a :href="route('courses.edit', course.id)"
-                               class="text-indigo-600 hover:text-indigo-900">Editar</a>
-                            <a @click="showDeleteCourseModal(course)"
-                               class="cursor-pointer text-red-600 hover:text-red-900 ml-1">Eliminar</a>
+                            <div class="flex items-center justify-around">
+                                <a :href="route('courses.edit', course.id)"
+                                   class="text-indigo-600 hover:text-indigo-900">Editar</a>
+                                <a @click="showDeleteCourseModal(course)"
+                                   class="cursor-pointer text-red-600 hover:text-red-900 ml-1">Eliminar</a>
+
+                                <button type="button"
+                                        class="bg-blue-400 hover:bg-blue-500 py-2 px-5 text-white float-right rounded-lg outline-none focus:outline-none"
+                                        @click="showCoursesStudent(course)">
+                                    Ver Estudiantes
+                                </button>
+
+                            </div>
+
                         </td>
                     </tr>
                 </template>
@@ -73,13 +83,13 @@
         </div>
 
         <!--Modal confirmation delete student-->
-        <jet-confirmation-modal v-if="courseDelete" :show="deleteCourseModal" @close="deleteCourseModal = false">
+        <jet-confirmation-modal v-if="currentCourse" :show="deleteCourseModal" @close="deleteCourseModal = false">
             <template #title>
                 Eliminar curso
             </template>
 
             <template #content>
-                ¿Está seguro que desea eliminar el curso {{ courseDelete.name }}?
+                ¿Está seguro que desea eliminar el curso {{ currentCourse.name }}?
             </template>
 
             <template #footer>
@@ -98,6 +108,12 @@
                 </jet-danger-button>
             </template>
         </jet-confirmation-modal>
+
+        <modal-students-course :show="coursesStudentModal" ref="coursesStudent"
+                               :course="currentCourse"
+                               @close="coursesStudentModal = false"
+            ></modal-students-course>
+
     </app-layout>
 </template>
 
@@ -108,29 +124,36 @@
     import JetDangerButton from "@/Jetstream/DangerButton";
     import Loading from "@/Components/Loading";
     import Datatable from "@/Components/Datatable";
+    import ModalStudentsCourse from "@/Components/ModalStudentsCourse";
 
     export default {
         name: "CoursesList",
-        components: {AppLayout, JetConfirmationModal, JetSecondaryButton, JetDangerButton, Loading, Datatable},
+        components: {AppLayout, JetConfirmationModal, JetSecondaryButton, JetDangerButton, Loading, Datatable, ModalStudentsCourse},
         props: ['courses'],
         data() {
             return {
                 deleteCourseModal: false,
-                courseDelete: null,
+                currentCourse: null,
                 formDelete: this.$inertia.form({
                     '_method': 'DELETE'
-                })
+                }),
+                coursesStudentModal: false,
             }
 
         },
         methods: {
             showDeleteCourseModal(course) {
                 this.deleteCourseModal = true
-                this.courseDelete = course
+                this.currentCourse = course
 
             },
             deleteCourse() {
-                this.formDelete.delete(route('courses.destroy', this.courseDelete.id))
+                this.formDelete.delete(route('courses.destroy', this.currentCourse.id))
+            },
+            showCoursesStudent(course) {
+                this.coursesStudentModal = true
+                this.currentCourse = course
+                this.$refs.coursesStudent.fetchData()
             }
         }
     }

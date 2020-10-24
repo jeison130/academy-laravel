@@ -30,9 +30,9 @@
                                 <div class="text-sm leading-5 text-gray-500">
                                     {{ student.email }}
                                 </div>
-                                <!--<div class="text-sm leading-5 text-gray-500">
-                                    del {{ student.start_date }} al {{ student.end_date }}
-                                </div>-->
+                                <div class="text-sm leading-5 text-gray-500">
+                                    Fecha de matrícula {{ student.inscription_date }}
+                                </div>
                             </div>
                         </td>
                         <td class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">

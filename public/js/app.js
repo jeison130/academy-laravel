@@ -25313,6 +25313,21 @@ var render = function() {
                                               "\n                            "
                                           )
                                         ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass:
+                                            "text-sm leading-5 text-gray-500"
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                                Fecha de matrícula " +
+                                              _vm._s(student.inscription_date) +
+                                              "\n                            "
+                                          )
+                                        ]
                                       )
                                     ])
                                   ]
@@ -25354,7 +25369,7 @@ var render = function() {
                       ],
                       null,
                       false,
-                      2021779131
+                      724504699
                     )
                   })
                 ]
@@ -25383,7 +25398,7 @@ var render = function() {
           ],
           null,
           false,
-          1026102877
+          4068813856
         )
       })
     : _vm._e()

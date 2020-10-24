@@ -119,7 +119,7 @@ class CourseController extends Controller
 
     public function students($course_id)
     {
-        $students = Student::select('students.*')
+        $students = Student::select('students.*', 'students_courses.created_at as inscription_date')
             ->join('students_courses', 'students_courses.student_id', 'students.id')
             ->where('students_courses.course_id', $course_id)
             ->get();

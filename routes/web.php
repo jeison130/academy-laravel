@@ -13,13 +13,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
+});*/
+
+Route::get('/', function () {
+    return redirect('courses');
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+/*Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return Inertia\Inertia::render('Dashboard');
-})->name('dashboard');
+})->name('dashboard');*/
+
 
 Route::resource('courses', \App\Http\Controllers\CourseController::class);
 Route::resource('students', \App\Http\Controllers\StudentController::class);
@@ -33,3 +38,4 @@ Route::delete('students/{id}/courses/{course_id}', [ \App\Http\Controllers\Stude
 /*Rutas adicionales de los cursos*/
 Route::get('courses/{id}/students', [ \App\Http\Controllers\CourseController::class, 'students' ])->name('courses.students');
 Route::delete('courses/{id}/students/{student_id}', [ \App\Http\Controllers\CourseController::class, 'studentDelete' ])->name('courses.students.delete');
+Route::get('courses/top/3', [ \App\Http\Controllers\CourseController::class, 'topCourses' ])->name('courses.top');

@@ -112,7 +112,7 @@ class CourseController extends Controller
             $course->delete();
 
             return redirect('courses')->with('success', 'Curso eliminado correctamente.');
-        }catch (\Exception $e){
+        } catch (\Exception $e) {
             return redirect('students')->with('error', 'No ha sido posible eliminar el curso debido a que tiene algunos estudiantes enlazados');
         }
     }
@@ -127,10 +127,21 @@ class CourseController extends Controller
         return $students;
     }
 
-    public function studentDelete($course_id, $student_id){
+    public function studentDelete($course_id, $student_id)
+    {
         StudentCourse::where('student_id', $student_id)
             ->where('course_id', $course_id)->delete();
 
         return ['message' => 'El estudiante ha sido eliminado correctamente'];
+    }
+
+    public function topCourses(Request $request)
+    {
+        return StudentCourse::select('courses.*', \DB::raw('COUNT(students_courses.id) AS students_count'))
+            ->join('courses', 'courses.id', 'students_courses.course_id')
+            ->where('students_courses.created_at', '>=', 'date_sub(curdate(), interval 6 month)')
+            ->groupBy('courses.id')
+            ->orderBy(\DB::raw('COUNT(students_courses.id)'), 'DESC')
+            ->get();
     }
 }

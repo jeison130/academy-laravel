@@ -14,6 +14,13 @@
                     >
                         Crear
                     </a>
+
+                    <a
+                        class="cursor-pointer mr-3 bg-orange-500 py-2 px-5 text-white float-right rounded-lg outline-none focus:outline-none"
+                        @click="top"
+                    >
+                        Top 3
+                    </a>
                 </div>
             </div>
 
@@ -109,10 +116,16 @@
             </template>
         </jet-confirmation-modal>
 
+        <!--Listado de estudiantes por curso-->
         <modal-students-course :show="coursesStudentModal" ref="coursesStudent"
                                :course="currentCourse"
                                @close="coursesStudentModal = false"
             ></modal-students-course>
+
+        <!--Top 3 cursos-->
+        <modal-top-courses :show="toptModal" ref="topCourses" @close="toptModal = false">
+
+        </modal-top-courses>
 
     </app-layout>
 </template>
@@ -125,10 +138,11 @@
     import Loading from "@/Components/Loading";
     import Datatable from "@/Components/Datatable";
     import ModalStudentsCourse from "@/Components/ModalStudentsCourse";
+    import ModalTopCourses from "@/Components/ModalTopCourses";
 
     export default {
         name: "CoursesList",
-        components: {AppLayout, JetConfirmationModal, JetSecondaryButton, JetDangerButton, Loading, Datatable, ModalStudentsCourse},
+        components: {AppLayout, JetConfirmationModal, JetSecondaryButton, JetDangerButton, Loading, Datatable, ModalStudentsCourse, ModalTopCourses},
         props: ['courses'],
         data() {
             return {
@@ -138,6 +152,7 @@
                     '_method': 'DELETE'
                 }),
                 coursesStudentModal: false,
+                toptModal: false,
             }
 
         },
@@ -154,6 +169,10 @@
                 this.coursesStudentModal = true
                 this.currentCourse = course
                 this.$refs.coursesStudent.fetchData()
+            },
+            top(){
+                this.toptModal = true
+                this.$refs.topCourses.fetchData()
             }
         }
     }

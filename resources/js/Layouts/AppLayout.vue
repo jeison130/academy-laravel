@@ -7,7 +7,7 @@
                     <div class="flex">
                         <!-- Logo -->
                         <div class="flex-shrink-0 flex items-center">
-                            <inertia-link :href="route('dashboard')">
+                            <inertia-link :href="route('courses.index')">
                                 <jet-application-mark class="block h-9 w-auto" />
                             </inertia-link>
                         </div>
@@ -24,7 +24,7 @@
                     </div>
 
                     <!-- Settings Dropdown -->
-                    <div class="hidden sm:flex sm:items-center sm:ml-6">
+                    <!--<div class="hidden sm:flex sm:items-center sm:ml-6">
                         <div class="ml-3 relative">
                             <jet-dropdown align="right" width="48">
                                 <template #trigger>
@@ -44,7 +44,7 @@
                                 </template>
 
                                 <template #content>
-                                    <!-- Account Management -->
+                                    &lt;!&ndash; Account Management &ndash;&gt;
                                     <div class="block px-4 py-2 text-xs text-gray-400">
                                         Mi cuenta
                                     </div>
@@ -55,7 +55,7 @@
 
                                     <div class="border-t border-gray-100"></div>
 
-                                    <!-- Authentication -->
+                                    &lt;!&ndash; Authentication &ndash;&gt;
                                     <form @submit.prevent="logout">
                                         <jet-dropdown-link as="button">
                                             Salir
@@ -64,7 +64,7 @@
                                 </template>
                             </jet-dropdown>
                         </div>
-                    </div>
+                    </div>-->
 
                     <!-- Hamburger -->
                     <div class="-mr-2 flex items-center sm:hidden">
@@ -90,7 +90,7 @@
                 </div>
 
                 <!-- Responsive Settings Options -->
-                <div class="pt-4 pb-1 border-t border-gray-200">
+                <!--<div class="pt-4 pb-1 border-t border-gray-200">
                     <div class="flex items-center px-4">
                         <div class="flex-shrink-0">
                             <img class="h-10 w-10 rounded-full" :src="$page.user.profile_photo_url" :alt="$page.user.name" />
@@ -107,14 +107,14 @@
                             Perfil
                         </jet-responsive-nav-link>
 
-                        <!-- Authentication -->
+                        &lt;!&ndash; Authentication &ndash;&gt;
                         <form method="POST" @submit.prevent="logout">
                             <jet-responsive-nav-link as="button">
                                 Salir
                             </jet-responsive-nav-link>
                         </form>
                     </div>
-                </div>
+                </div>-->
             </div>
         </nav>
 

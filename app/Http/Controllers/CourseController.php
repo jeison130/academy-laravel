@@ -108,9 +108,13 @@ class CourseController extends Controller
      */
     public function destroy(Course $course)
     {
-        $course->delete();
+        try {
+            $course->delete();
 
-        return redirect('courses')->with('success', 'Curso eliminado correctamente.');
+            return redirect('courses')->with('success', 'Curso eliminado correctamente.');
+        }catch (\Exception $e){
+            return redirect('students')->with('error', 'No ha sido posible eliminar el curso debido a que tiene algunos estudiantes enlazados');
+        }
     }
 
     public function students($course_id)
